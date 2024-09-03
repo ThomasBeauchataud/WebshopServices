@@ -14,8 +14,6 @@
 
 namespace TBCD\Webshop\Services\Cart;
 
-use App\Entity\Cart;
-
 interface CartServiceInterface
 {
 
@@ -23,16 +21,16 @@ interface CartServiceInterface
      * Return the cart for the current session
      * If the cart doesn't exist, a new cart is created and saved
      *
-     * @return Cart
+     * @return CartInterface
      */
-    public function getCart(): Cart;
+    public function getCart(): CartInterface;
 
     /**
      * Save the given cart for the current session
      *
-     * @param Cart $cart
-     * @return Cart
+     * @param CartInterface $cart
+     * @return CartInterface
      */
-    public function saveCart(Cart $cart): Cart;
+    public function saveCart(CartInterface $cart): CartInterface;
 
 }

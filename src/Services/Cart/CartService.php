@@ -2,8 +2,6 @@
 
 namespace TBCD\Webshop\Services\Cart;
 
-use App\Entity\Cart;
-
 class CartService implements CartServiceInterface
 {
 
@@ -20,7 +18,7 @@ class CartService implements CartServiceInterface
     /**
      * @inheritDoc
      */
-    public function getCart(): Cart
+    public function getCart(): CartInterface
     {
         $cart = $this->cartStorage->get();
 
@@ -35,7 +33,7 @@ class CartService implements CartServiceInterface
     /**
      * @inheritDoc
      */
-    public function saveCart(Cart $cart): Cart
+    public function saveCart(CartInterface $cart): CartInterface
     {
         return $this->cartStorage->save($cart);
     }
