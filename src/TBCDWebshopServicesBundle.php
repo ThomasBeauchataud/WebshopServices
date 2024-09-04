@@ -12,11 +12,12 @@
 
 namespace TBCD\Webshop;
 
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
+use TBCD\Webshop\HttpClient\PaypalHttpClient;
+use TBCD\Webshop\Services\Payment\PaypalPaymentProvider;
 
 class TBCDWebshopServicesBundle extends AbstractBundle
 {
@@ -26,7 +27,15 @@ class TBCDWebshopServicesBundle extends AbstractBundle
      */
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
-        $loader = new YamlFileLoader($builder, new FileLocator(__DIR__ . '/Resources/config'));
-        $loader->load('services.yaml');
+        $container->services()
+            ->load("TBCD\\Webshop\\", __DIR__ . "/../src/")
+            ->autowire()
+            ->autoconfigure();
+
+        if (isset($config['paypal.secret']) && isset($config['paypal.client']) && isset($config['paypal.hostname'])) {
+            $container->services()
+                ->get(PaypalPaymentProvider::class)
+                ->bind(HttpClientInterface::class, PaypalHttpClient::class);
+        }
     }
 }

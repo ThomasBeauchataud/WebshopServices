@@ -8,7 +8,6 @@
 namespace TBCD\Webshop\Services\Payment;
 
 use Psr\Log\LoggerInterface;
-use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -19,7 +18,7 @@ class PaypalPaymentProvider implements PaymentProviderInterface
     private readonly HttpClientInterface $httpClient;
     private readonly LoggerInterface $logger;
 
-    public function __construct(#[Target('paypal.http_client')] HttpClientInterface $httpClient, LoggerInterface $logger)
+    public function __construct(HttpClientInterface $httpClient, LoggerInterface $logger)
     {
         $this->httpClient = $httpClient;
         $this->logger = $logger;
