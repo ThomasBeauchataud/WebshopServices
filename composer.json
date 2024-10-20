@@ -32,7 +32,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "TBCD\\Webshop\\Tests\\": "tests/"
         }
     },
     "conflict": {

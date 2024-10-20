@@ -32,7 +32,7 @@ class TBCDWebshopServicesBundle extends AbstractBundle
             ->autowire()
             ->autoconfigure();
 
-        if (isset($config['paypal.secret']) && isset($config['paypal.client']) && isset($config['paypal.hostname'])) {
+        if ($builder->hasParameter('paypal.secret') && $builder->hasParameter('paypal.client')) {
             $container->services()
                 ->get(PaypalPaymentProvider::class)
                 ->bind(HttpClientInterface::class, PaypalHttpClient::class);

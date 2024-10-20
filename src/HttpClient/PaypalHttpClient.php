@@ -12,9 +12,8 @@ use Exception;
 use LogicException;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\InvalidArgumentException;
-use Symfony\Component\DependencyInjection\Attribute\AsAlias;
-use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\HttpClient\HttpOptions;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -29,13 +28,22 @@ class PaypalHttpClient implements HttpClientInterface
 
     private HttpClientInterface $httpClient;
     private readonly CacheInterface $cache;
-    private readonly ParameterBagInterface $parameterBag;
+    private readonly string $paypalSecret;
+    private readonly string $paypalClient;
 
-    public function __construct(CacheInterface $cache, ParameterBagInterface $parameterBag, HttpClientInterface $httpClient)
+    public function __construct(CacheInterface $cache, HttpClientInterface $httpClient, ParameterBagInterface $parameterBag)
     {
-        $this->httpClient = $httpClient;
         $this->cache = $cache;
-        $this->parameterBag = $parameterBag;
+        $this->paypalSecret = $parameterBag->get('paypal.secret');
+        $this->paypalClient = $parameterBag->get('paypal.client');
+
+        if ($parameterBag->has('paypal.hostname')) {
+            $paypalHostname = $parameterBag->get('paypal.hostname');
+        } else {
+            $paypalHostname = $parameterBag->get('kernel.environment') === 'prod' ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com';
+        }
+
+        $this->httpClient = $httpClient->withOptions((new HttpOptions())->setBaseUri($paypalHostname)->toArray());
     }
 
 
@@ -57,12 +65,10 @@ class PaypalHttpClient implements HttpClientInterface
         try {
 
             return $this->cache->get('webshop_payment.paypal.access_token', function (CacheItemInterface $cacheItem) {
-                $client = $this->parameterBag->get('webshop_payment.paypal_client');
-                $secret = $this->parameterBag->get('webshop_payment.paypal_secret');
                 $url = "/v1/oauth2/token";
                 $params = ['grant_type' => 'client_credentials'];
                 $headers = ['Content-Type' => 'application/x-www-form-urlencoded'];
-                $response = $this->httpClient->request(Request::METHOD_POST, $url, ['body' => $params, 'headers' => $headers, 'auth_basic' => [$client, $secret]])->toArray();
+                $response = $this->httpClient->request(Request::METHOD_POST, $url, ['body' => $params, 'headers' => $headers, 'auth_basic' => [$this->paypalClient, $this->paypalSecret]])->toArray();
                 $cacheItem->expiresAfter(new DateInterval('PT' . $response[self::EXPIRE_KEY] . 'S'));
                 return $response[self::ACCESS_TOKEN_KEY];
             });
