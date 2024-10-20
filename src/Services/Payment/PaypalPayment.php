@@ -46,6 +46,14 @@ class PaypalPayment implements PaymentInterface
     }
 
     /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
      * @inheritDoc
      */
     public function isComplete(): bool
