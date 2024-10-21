@@ -31,6 +31,7 @@ class TBCDWebshopServicesBundle extends AbstractBundle
     {
         $container->services()
             ->load("TBCD\\Webshop\\", __DIR__ . "/../src/")
+            ->exclude(["/../src/Entity"])
             ->autowire()
             ->autoconfigure();
 
