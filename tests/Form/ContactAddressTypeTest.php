@@ -15,9 +15,7 @@
 namespace TBCD\Webshop\Tests\Form;
 
 use Symfony\Component\Form\Test\TypeTestCase;
-use TBCD\Webshop\Entity\Address;
 use TBCD\Webshop\Entity\ContactAddress;
-use TBCD\Webshop\Form\AddressType;
 use TBCD\Webshop\Form\ContactAddressType;
 
 class ContactAddressTypeTest extends TypeTestCase
@@ -26,7 +24,7 @@ class ContactAddressTypeTest extends TypeTestCase
     /**
      * @return void
      */
-    public function testSubmitValidData(): void
+    public function testSubmit(): void
     {
         $formData = [];
         $model = new ContactAddress();
@@ -40,7 +38,7 @@ class ContactAddressTypeTest extends TypeTestCase
     /**
      * @return void
      */
-    public function testFormView(): void
+    public function testView(): void
     {
         $formData = new ContactAddress();
         $view = $this->factory->create(ContactAddressType::class, $formData)->createView();

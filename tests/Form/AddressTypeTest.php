@@ -24,7 +24,7 @@ class AddressTypeTest extends TypeTestCase
     /**
      * @return void
      */
-    public function testSubmitValidData(): void
+    public function testSubmit(): void
     {
         $formData = [];
         $model = new Address();
@@ -38,7 +38,7 @@ class AddressTypeTest extends TypeTestCase
     /**
      * @return void
      */
-    public function testFormView(): void
+    public function testView(): void
     {
         $formData = new Address();
         $view = $this->factory->create(AddressType::class, $formData)->createView();
