@@ -28,4 +28,9 @@ interface CartStorageInterface
      */
     public function save(CartInterface $cart): CartInterface;
 
+    /**
+     * @return void
+     */
+    public function delete(): void;
+
 }

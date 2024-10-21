@@ -33,4 +33,11 @@ interface CartServiceInterface
      */
     public function saveCart(CartInterface $cart): CartInterface;
 
+    /**
+     * Delete the cart for the current session
+     *
+     * @return void
+     */
+    public function deleteCart(): void;
+
 }

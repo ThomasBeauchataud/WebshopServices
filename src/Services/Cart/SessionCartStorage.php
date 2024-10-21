@@ -44,4 +44,12 @@ class SessionCartStorage implements CartStorageInterface
         $this->requestStack->getSession()->set(self::CART_SESSION, $cart);
         return $cart;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function delete(): void
+    {
+        $this->requestStack->getSession()->remove(self::CART_SESSION);
+    }
 }

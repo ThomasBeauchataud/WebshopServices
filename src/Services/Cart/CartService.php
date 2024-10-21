@@ -37,4 +37,12 @@ class CartService implements CartServiceInterface
     {
         return $this->cartStorage->save($cart);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function deleteCart(): void
+    {
+        $this->cartStorage->delete();
+    }
 }
