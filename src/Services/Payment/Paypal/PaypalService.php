@@ -13,7 +13,6 @@ use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use TBCD\Webshop\Entity\ContactAddress;
 use TBCD\Webshop\Services\Payment\Paypal\Model\PaypalOrder;
-use TBCD\Webshop\Services\Payment\Paypal\Model\PaypalPayer;
 use TBCD\Webshop\Services\Payment\Paypal\Model\PaypalPayment;
 
 class PaypalService
