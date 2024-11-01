@@ -10,27 +10,27 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Address
 {
 
-    #[Column(length: 255)]
+    #[Column(length: 255, nullable: true)]
     #[Assert\NotBlank]
     protected ?string $firstname = null;
 
-    #[Column(length: 255)]
+    #[Column(length: 255, nullable: true)]
     #[Assert\NotBlank]
     protected ?string $lastname = null;
 
-    #[Column(length: 255)]
+    #[Column(length: 255, nullable: true)]
     #[Assert\NotBlank]
     protected ?string $street = null;
 
-    #[Column(length: 255)]
+    #[Column(length: 255, nullable: true)]
     #[Assert\NotBlank]
     protected ?string $zipCode = null;
 
-    #[Column(length: 255)]
+    #[Column(length: 255, nullable: true)]
     #[Assert\NotBlank]
     protected ?string $city = null;
 
-    #[Column(length: 255)]
+    #[Column(length: 255, nullable: true)]
     #[Assert\NotBlank]
     protected ?string $country = null;
 
