@@ -54,7 +54,7 @@ class PaypalService
             $paypalPayments = [];
             foreach ($responseData['purchase_units'] as $purchaseUnit) {
                 foreach ($purchaseUnit['payments']['captures'] as $capture) {
-                    if ($capture['amount']['currency_code'] !== 'EUR') {
+                    if ($capture['amount']['currency_code'] === 'EUR') {
                         $paypalPayments[] = new PaypalPayment($capture['id'], $capture['status'], $capture['amount']['value']);
                     } else {
                         $this->logger->warning('Unaccepted currency code ' . $purchaseUnit['amount']['currency_code']);
