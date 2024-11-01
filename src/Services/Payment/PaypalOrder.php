@@ -9,28 +9,31 @@
  * file that was distributed with this source code.
  *
  * Author Thomas Beauchataud
- * From 01/09/2024
+ * From 01/11/2024
  */
 
 namespace TBCD\Webshop\Services\Payment;
 
-class PaypalPayment
+class PaypalOrder
 {
 
     private string $id;
+    private Payer $payer;
     private string $status;
-    private float $amount;
+    private array $payments;
 
     /**
      * @param string $id
+     * @param Payer $payer
      * @param string $status
-     * @param float $amount
+     * @param array $payments
      */
-    public function __construct(string $id, string $status, float $amount)
+    public function __construct(string $id, Payer $payer, string $status, array $payments)
     {
         $this->id = $id;
+        $this->payer = $payer;
         $this->status = $status;
-        $this->amount = $amount;
+        $this->payments = $payments;
     }
 
 
@@ -39,13 +42,18 @@ class PaypalPayment
         return $this->id;
     }
 
+    public function getPayer(): Payer
+    {
+        return $this->payer;
+    }
+
     public function getStatus(): string
     {
         return $this->status;
     }
 
-    public function getAmount(): float
+    public function getPayments(): array
     {
-        return $this->amount;
+        return $this->payments;
     }
 }

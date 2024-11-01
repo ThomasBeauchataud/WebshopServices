@@ -11,7 +11,7 @@ class Payer
     private ?string $email;
     private ?string $phone;
     private ?string $addressLine;
-    private ?string $postalCode;
+    private ?string $zipCode;
 
     public function getIdentifier(): ?string
     {
@@ -73,13 +73,13 @@ class Payer
         $this->addressLine = $addressLine;
     }
 
-    public function getPostalCode(): ?string
+    public function getZipCode(): ?string
     {
-        return $this->postalCode;
+        return $this->zipCode;
     }
 
-    public function setPostalCode(?string $postalCode): void
+    public function setZipCode(?string $zipCode): void
     {
-        $this->postalCode = $postalCode;
+        $this->zipCode = $zipCode;
     }
 }
