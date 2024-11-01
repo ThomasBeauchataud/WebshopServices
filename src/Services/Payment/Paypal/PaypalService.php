@@ -5,14 +5,17 @@
  * Since 14/02/2022
  */
 
-namespace TBCD\Webshop\Services\Payment;
+namespace TBCD\Webshop\Services\Payment\Paypal;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use TBCD\Webshop\Services\Payment\Paypal\Model\PaypalOrder;
+use TBCD\Webshop\Services\Payment\Paypal\Model\PaypalPayer;
+use TBCD\Webshop\Services\Payment\Paypal\Model\PaypalPayment;
 
-class PaypalPaymentProvider
+class PaypalService
 {
 
     private readonly HttpClientInterface $httpClient;
@@ -38,7 +41,7 @@ class PaypalPaymentProvider
             $responseData = $response->toArray();
             $this->logger->debug('Reception of a valid response : ' . json_encode($responseData));
 
-            $payer = new Payer();
+            $payer = new PaypalPayer();
             $payer->setEmail($responseData['payer']['email_address'] ?? null);
             $payer->setFirstName($responseData['payer']['name']['given_name'] ?? null);
             $payer->setLastName($responseData['payer']['name']['surname'] ?? null);

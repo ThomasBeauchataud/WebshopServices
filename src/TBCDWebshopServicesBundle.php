@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use TBCD\Webshop\HttpClient\PaypalHttpClient;
-use TBCD\Webshop\Services\Payment\PaypalPaymentProvider;
+use TBCD\Webshop\Services\Payment\Paypal\PaypalService;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
@@ -37,7 +37,7 @@ class TBCDWebshopServicesBundle extends AbstractBundle
 
         if ($builder->hasParameter('paypal.secret') && $builder->hasParameter('paypal.client')) {
             $container->services()
-                ->get(PaypalPaymentProvider::class)
+                ->get(PaypalService::class)
                 ->bind(HttpClientInterface::class, service(PaypalHttpClient::class));
         }
     }

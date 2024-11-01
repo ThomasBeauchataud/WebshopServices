@@ -1,8 +1,8 @@
 <?php
 
-namespace TBCD\Webshop\Services\Payment;
+namespace TBCD\Webshop\Services\Payment\Paypal\Model;
 
-class Payer
+class PaypalPayer
 {
 
     private ?string $identifier;

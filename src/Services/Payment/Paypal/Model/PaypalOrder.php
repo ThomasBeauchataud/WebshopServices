@@ -12,23 +12,23 @@
  * From 01/11/2024
  */
 
-namespace TBCD\Webshop\Services\Payment;
+namespace TBCD\Webshop\Services\Payment\Paypal\Model;
 
 class PaypalOrder
 {
 
     private string $id;
-    private Payer $payer;
+    private PaypalPayer $payer;
     private string $status;
     private array $payments;
 
     /**
      * @param string $id
-     * @param Payer $payer
+     * @param PaypalPayer $payer
      * @param string $status
      * @param array $payments
      */
-    public function __construct(string $id, Payer $payer, string $status, array $payments)
+    public function __construct(string $id, PaypalPayer $payer, string $status, array $payments)
     {
         $this->id = $id;
         $this->payer = $payer;
@@ -42,7 +42,7 @@ class PaypalOrder
         return $this->id;
     }
 
-    public function getPayer(): Payer
+    public function getPayer(): PaypalPayer
     {
         return $this->payer;
     }

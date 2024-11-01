@@ -12,9 +12,11 @@
  * From 01/09/2024
  */
 
-namespace TBCD\Webshop\Services\Payment;
+namespace TBCD\Webshop\Services\Payment\Paypal\Model;
 
-class PaypalPayment
+use TBCD\Webshop\Services\Payment\PaymentInterface;
+
+class PaypalPayment implements PaymentInterface
 {
 
     private string $id;
@@ -47,5 +49,13 @@ class PaypalPayment
     public function getAmount(): float
     {
         return $this->amount;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isComplete(): bool
+    {
+        return $this->status === "COMPLETED";
     }
 }
