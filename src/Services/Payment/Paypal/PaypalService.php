@@ -11,6 +11,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use TBCD\Webshop\Entity\ContactAddress;
 use TBCD\Webshop\Services\Payment\Paypal\Model\PaypalOrder;
 use TBCD\Webshop\Services\Payment\Paypal\Model\PaypalPayer;
 use TBCD\Webshop\Services\Payment\Paypal\Model\PaypalPayment;
@@ -41,13 +42,14 @@ class PaypalService
             $responseData = $response->toArray();
             $this->logger->debug('Reception of a valid response : ' . json_encode($responseData));
 
-            $payer = new PaypalPayer();
+            $payer = new ContactAddress();
             $payer->setEmail($responseData['payer']['email_address'] ?? null);
             $payer->setFirstName($responseData['payer']['name']['given_name'] ?? null);
             $payer->setLastName($responseData['payer']['name']['surname'] ?? null);
             $payer->setPhone($responseData['payer']['phone']['phone_number'] ?? null);
-            $payer->setAddressLine($responseData['payer']['address']['address_line_1'] ?? null);
+            $payer->setStreet($responseData['payer']['address']['address_line_1'] ?? null);
             $payer->setZipCode($responseData['payer']['address']['postal_code'] ?? null);
+            $payer->setCountry($responseData['payer']['address']['country_code'] ?? null);
 
             $paypalPayments = [];
             foreach ($responseData['purchase_units'] as $purchaseUnit) {

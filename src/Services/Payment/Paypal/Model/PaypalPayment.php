@@ -36,16 +36,25 @@ class PaypalPayment implements PaymentInterface
     }
 
 
+    /**
+     * @return string
+     */
     public function getId(): string
     {
         return $this->id;
     }
 
+    /**
+     * @return string
+     */
     public function getStatus(): string
     {
         return $this->status;
     }
 
+    /**
+     * @return float
+     */
     public function getAmount(): float
     {
         return $this->amount;

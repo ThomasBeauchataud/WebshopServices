@@ -14,21 +14,23 @@
 
 namespace TBCD\Webshop\Services\Payment\Paypal\Model;
 
+use TBCD\Webshop\Entity\ContactAddress;
+
 class PaypalOrder
 {
 
     private string $id;
-    private PaypalPayer $payer;
+    private ContactAddress $payer;
     private string $status;
     private array $payments;
 
     /**
      * @param string $id
-     * @param PaypalPayer $payer
+     * @param ContactAddress $payer
      * @param string $status
      * @param array $payments
      */
-    public function __construct(string $id, PaypalPayer $payer, string $status, array $payments)
+    public function __construct(string $id, ContactAddress $payer, string $status, array $payments)
     {
         $this->id = $id;
         $this->payer = $payer;
@@ -37,21 +39,33 @@ class PaypalOrder
     }
 
 
+    /**
+     * @return string
+     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    public function getPayer(): PaypalPayer
+    /**
+     * @return ContactAddress
+     */
+    public function getPayer(): ContactAddress
     {
         return $this->payer;
     }
 
+    /**
+     * @return string
+     */
     public function getStatus(): string
     {
         return $this->status;
     }
 
+    /**
+     * @return PaypalPayment[]
+     */
     public function getPayments(): array
     {
         return $this->payments;
