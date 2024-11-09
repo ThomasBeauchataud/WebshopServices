@@ -2,6 +2,8 @@
 
 namespace TBCD\Webshop\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Intl\Countries;
 use TBCD\Webshop\Entity\Address;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -41,11 +43,14 @@ class AddressType extends AbstractType
                     'ariaLabel' =>  'City'
                 ]
             ])
-            ->add('country', TextType::class, [
+            ->add('country', CountryType::class, [
                 'attr' => [
                     'placeholder' => 'Country',
                     'ariaLabel' => 'Country'
-                ]
+                ],
+                'choices' => $options['countries'],
+                'preferred_choices' => $options['preferred_countries'],
+                'duplicate_preferred_choices' => true
             ])
             ->add('zipCode', TextType::class, [
                 'attr' => [
@@ -61,7 +66,9 @@ class AddressType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Address::class
+            'data_class' => Address::class,
+            'countries' => Countries::getNames(),
+            'preferred_countries' => []
         ]);
     }
 }
