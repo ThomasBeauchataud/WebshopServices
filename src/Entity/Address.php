@@ -11,27 +11,27 @@ class Address
 {
 
     #[Column(length: 255, nullable: true)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(allowNull: true)]
     protected ?string $firstname = null;
 
     #[Column(length: 255, nullable: true)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(allowNull: true)]
     protected ?string $lastname = null;
 
     #[Column(length: 255, nullable: true)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(allowNull: true)]
     protected ?string $street = null;
 
     #[Column(length: 255, nullable: true)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(allowNull: true)]
     protected ?string $zipCode = null;
 
     #[Column(length: 255, nullable: true)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(allowNull: true)]
     protected ?string $city = null;
 
     #[Column(length: 255, nullable: true)]
-    #[Assert\NotBlank]
+    #[Assert\Country]
     protected ?string $country = null;
 
     public function getFirstname(): ?string

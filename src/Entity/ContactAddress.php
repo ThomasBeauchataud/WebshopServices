@@ -11,12 +11,11 @@ class ContactAddress extends Address
 {
 
     #[Column(length: 255, nullable: true)]
-    #[Assert\NotBlank]
     #[Assert\Email]
     protected ?string $email = null;
 
     #[Column(length: 255, nullable: true)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(allowNull: true)]
     protected ?string $phone = null;
 
     public function getEmail(): ?string
