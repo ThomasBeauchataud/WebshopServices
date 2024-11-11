@@ -18,6 +18,20 @@ class AddressType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $countryOptions = [
+            'attr' => [
+                'placeholder' => 'Country',
+                'ariaLabel' => 'Country'
+            ],
+            'choices' => $options['countries'],
+            'preferred_choices' => $options['preferred_countries'],
+            'duplicate_preferred_choices' => true
+        ];
+
+        if (!empty($options['countries'])) {
+            $countryOptions['choice_loader'] = null;
+        }
+
         $builder
             ->add('firstname', TextType::class, [
                 'attr' => [
@@ -34,24 +48,16 @@ class AddressType extends AbstractType
             ->add('street', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Street',
-                    'ariaLabel' =>  'Street'
+                    'ariaLabel' => 'Street'
                 ]
             ])
             ->add('city', TextType::class, [
                 'attr' => [
-                    'placeholder' =>  'City',
-                    'ariaLabel' =>  'City'
+                    'placeholder' => 'City',
+                    'ariaLabel' => 'City'
                 ]
             ])
-            ->add('country', CountryType::class, [
-                'attr' => [
-                    'placeholder' => 'Country',
-                    'ariaLabel' => 'Country'
-                ],
-                'choices' => $options['countries'],
-                'preferred_choices' => $options['preferred_countries'],
-                'duplicate_preferred_choices' => true
-            ])
+            ->add('country', CountryType::class, $countryOptions)
             ->add('zipCode', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Zip code',
@@ -67,7 +73,7 @@ class AddressType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Address::class,
-            'countries' => Countries::getNames(),
+            'countries' => [],
             'preferred_countries' => []
         ]);
     }

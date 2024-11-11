@@ -44,4 +44,15 @@ class AddressTypeTest extends TypeTestCase
         $view = $this->factory->create(AddressType::class, $formData)->createView();
         $this->assertNotNull($view);
     }
+
+    /**
+     * @return void
+     */
+    public function testViewCountiesOption(): void
+    {
+        $formOptions = ['countries' => ['FR' => 'France']];
+        $formData = new Address();
+        $view = $this->factory->create(AddressType::class, $formData, $formOptions)->createView();
+        $this->assertNotNull($view);
+    }
 }
