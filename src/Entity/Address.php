@@ -2,35 +2,34 @@
 
 namespace TBCD\Webshop\Entity;
 
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Embeddable;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[Embeddable]
+#[ORM\Embeddable]
 class Address
 {
 
-    #[Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(allowNull: true)]
     protected ?string $firstname = null;
 
-    #[Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(allowNull: true)]
     protected ?string $lastname = null;
 
-    #[Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(allowNull: true)]
     protected ?string $street = null;
 
-    #[Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(allowNull: true)]
     protected ?string $zipCode = null;
 
-    #[Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(allowNull: true)]
     protected ?string $city = null;
 
-    #[Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Country]
     protected ?string $country = null;
 

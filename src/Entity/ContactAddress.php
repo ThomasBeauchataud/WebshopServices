@@ -2,19 +2,18 @@
 
 namespace TBCD\Webshop\Entity;
 
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Embeddable;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[Embeddable]
+#[ORM\Embeddable]
 class ContactAddress extends Address
 {
 
-    #[Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Email]
     protected ?string $email = null;
 
-    #[Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(allowNull: true)]
     protected ?string $phone = null;
 
