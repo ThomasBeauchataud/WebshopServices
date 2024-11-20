@@ -24,9 +24,7 @@ class AddressType extends AbstractType
             ],
             'choices' => $options['countries'],
             'preferred_choices' => $options['preferred_countries'],
-            'duplicate_preferred_choices' => true,
-            'empty_data' => null,
-            'placeholder' => 'Country',
+            'duplicate_preferred_choices' => true
         ];
 
         if (!empty($options['countries'])) {
