@@ -3,7 +3,6 @@
 namespace TBCD\Webshop\Form;
 
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
-use Symfony\Component\Intl\Countries;
 use TBCD\Webshop\Entity\Address;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,7 +24,8 @@ class AddressType extends AbstractType
             ],
             'choices' => $options['countries'],
             'preferred_choices' => $options['preferred_countries'],
-            'duplicate_preferred_choices' => true
+            'duplicate_preferred_choices' => true,
+            'empty_data' => null
         ];
 
         if (!empty($options['countries'])) {
