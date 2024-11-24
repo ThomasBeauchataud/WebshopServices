@@ -54,7 +54,9 @@ class CartService implements CartServiceInterface
         $weight = 0;
         /** @var CartItemInterface $item */
         foreach ($cart->getItems() as $item) {
-            $weight += $item->getArticle()->getWeight() * $item->getQuantity();
+            if ($item?->getArticle()?->getWeight() !== null && $item?->getQuantity() !== null) {
+                $weight += $item->getArticle()->getWeight() * $item->getQuantity();
+            }
         }
         return $weight;
     }
@@ -67,7 +69,9 @@ class CartService implements CartServiceInterface
         $total = 0;
         /** @var CartItemInterface $item */
         foreach ($cart->getItems() as $item) {
-            $total += $item->getArticle()->getPrice() * $item->getQuantity();
+            if ($item?->getArticle()?->getPrice() !== null && $item?->getQuantity() !== null) {
+                $total += $item->getArticle()->getPrice() * $item->getQuantity();
+            }
         }
         return $total;
     }

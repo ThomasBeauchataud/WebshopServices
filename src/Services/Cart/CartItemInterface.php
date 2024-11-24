@@ -22,15 +22,15 @@ interface CartItemInterface
     /**
      * Return the article of the cart item
      *
-     * @return Article
+     * @return Article|null
      */
-    public function getArticle(): Article;
+    public function getArticle(): ?Article;
 
     /**
      * Return the quantity (number of the same article) of the cart item
      *
-     * @return int
+     * @return int|null
      */
-    public function getQuantity(): int;
+    public function getQuantity(): ?int;
 
 }
