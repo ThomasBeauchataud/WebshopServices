@@ -40,4 +40,20 @@ interface CartServiceInterface
      */
     public function deleteCart(): void;
 
+    /**
+     * Return the weight of the given cart
+     *
+     * @param CartInterface $cart
+     * @return float
+     */
+    public function getCartWeight(CartInterface $cart): float;
+
+    /**
+     * Return the items price for the given cart
+     *
+     * @param CartInterface $cart
+     * @return float
+     */
+    public function getCartItemsPrice(CartInterface $cart): float;
+
 }

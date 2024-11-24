@@ -32,18 +32,18 @@ class Shipment
     private ?DateTimeInterface $creationDate;
 
     #[ORM\Column]
-    #[Assert\NotBlank(allowNull: true)]
+    #[Assert\NotBlank]
     private ?string $reference = null;
 
     #[ORM\Embedded]
     #[Assert\Valid]
     #[Assert\NotNull]
-    private ?ContactAddress $destination = null;
+    private ?ContactAddress $origin = null;
 
     #[ORM\Embedded]
     #[Assert\Valid]
     #[Assert\NotNull]
-    private ?ContactAddress $origin = null;
+    private ?ContactAddress $destination = null;
 
     public function __construct()
     {

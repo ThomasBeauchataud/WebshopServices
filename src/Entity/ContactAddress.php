@@ -9,11 +9,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ContactAddress extends Address
 {
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(nullable: true)]
     #[Assert\Email]
     protected ?string $email = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(nullable: true)]
     #[Assert\NotBlank(allowNull: true)]
     protected ?string $phone = null;
 

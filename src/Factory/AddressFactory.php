@@ -27,7 +27,7 @@ final class AddressFactory extends ObjectFactory
             'lastName' => self::faker()->lastName(),
             'country' => self::faker()->country(),
             'city' => self::faker()->city(),
-            'zipCode' => self::faker()->postcode(),
+            'zipCode' => self::faker()->postcode()
         ];
     }
 }

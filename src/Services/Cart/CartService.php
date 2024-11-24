@@ -45,4 +45,30 @@ class CartService implements CartServiceInterface
     {
         $this->cartStorage->delete();
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCartWeight(CartInterface $cart): float
+    {
+        $weight = 0;
+        /** @var CartItemInterface $item */
+        foreach ($cart->getItems() as $item) {
+            $weight += $item->getArticle()->getWeight() * $item->getQuantity();
+        }
+        return $weight;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCartItemsPrice(CartInterface $cart): float
+    {
+        $total = 0;
+        /** @var CartItemInterface $item */
+        foreach ($cart->getItems() as $item) {
+            $total += $item->getArticle()->getPrice() * $item->getQuantity();
+        }
+        return $total;
+    }
 }

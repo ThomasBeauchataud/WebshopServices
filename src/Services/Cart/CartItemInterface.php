@@ -14,14 +14,23 @@
 
 namespace TBCD\Webshop\Services\Cart;
 
-interface CartInterface
+use TBCD\Webshop\Entity\Article;
+
+interface CartItemInterface
 {
 
     /**
-     * Return the items of the cart
+     * Return the article of the cart item
      *
-     * @return CartItemInterface[]
+     * @return Article
      */
-    public function getItems(): iterable;
+    public function getArticle(): Article;
+
+    /**
+     * Return the quantity (number of the same article) of the cart item
+     *
+     * @return int
+     */
+    public function getQuantity(): int;
 
 }
