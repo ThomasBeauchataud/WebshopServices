@@ -13,28 +13,28 @@ class Article
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    protected ?int $id = null;
 
     #[ORM\Column]
     #[Assert\NotBlank]
-    private ?string $name = null;
+    protected ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Assert\NotBlank(allowNull: true)]
-    private ?string $description = null;
+    protected ?string $description = null;
 
     #[ORM\Column]
     #[Assert\Positive]
     #[Assert\NotNull]
-    private ?float $price = null;
+    protected ?float $price = null;
 
     #[ORM\Column(nullable: true)]
     #[Assert\Positive]
-    private ?int $quantityMax = null;
+    protected ?int $quantityMax = null;
 
     #[ORM\Column(nullable: true)]
     #[Assert\Positive]
-    private ?int $weight = null;
+    protected ?int $weight = null;
 
     public function getId(): ?int
     {

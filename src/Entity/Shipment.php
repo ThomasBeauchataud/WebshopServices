@@ -26,24 +26,24 @@ class Shipment
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    protected ?int $id = null;
 
     #[ORM\Column]
-    private ?DateTimeInterface $creationDate;
+    protected ?DateTimeInterface $creationDate;
 
     #[ORM\Column]
     #[Assert\NotBlank]
-    private ?string $reference = null;
+    protected ?string $reference = null;
 
     #[ORM\Embedded]
     #[Assert\Valid]
     #[Assert\NotNull]
-    private ?ContactAddress $origin = null;
+    protected ?ContactAddress $origin = null;
 
     #[ORM\Embedded]
     #[Assert\Valid]
     #[Assert\NotNull]
-    private ?ContactAddress $destination = null;
+    protected ?ContactAddress $destination = null;
 
     public function __construct()
     {
