@@ -58,7 +58,7 @@ class CartServiceTest extends TestCase
         $cartSessionStorage = new SessionCartStorage($requestStack);
         $cartService = new CartService(new FakeCartFactory(), $cartSessionStorage);
 
-        $savedCart = $cartService->saveCart(new FakeCart());
+        $savedCart = $cartService->saveCart(new FakeCart([]));
         $this->assertNotNull($savedCart);
 
         $cart = $cartService->getCart();
@@ -79,7 +79,7 @@ class CartServiceTest extends TestCase
         $cartSessionStorage = new SessionCartStorage($requestStack);
         $cartService = new CartService(new FakeCartFactory(), $cartSessionStorage);
 
-        $cart = $cartService->saveCart(new FakeCart());
+        $cart = $cartService->saveCart(new FakeCart([]));
         $this->assertNotNull($cart);
 
         $cartService->deleteCart();

@@ -19,4 +19,18 @@ use TBCD\Webshop\Services\Cart\CartInterface;
 class FakeCart implements CartInterface
 {
 
+    private readonly array $items;
+
+    public function __construct(array $items)
+    {
+        $this->items = $items;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getItems(): iterable
+    {
+        return $this->items;
+    }
 }

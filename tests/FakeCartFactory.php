@@ -25,6 +25,6 @@ class FakeCartFactory implements CartFactoryInterface
      */
     public function create(): CartInterface
     {
-        return new FakeCart();
+        return new FakeCart([]);
     }
 }
